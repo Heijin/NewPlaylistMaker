@@ -22,37 +22,34 @@
         android:padding="16dp">
 
         <Button
+            style= "@style/main_menu_buttons"
             android:id="@+id/id_button_search"
             android:text="@string/title_search"
-            app:cornerRadius="@dimen/button_radius"
+            app:cornerRadius="@dimen/dp_16"
             app:icon="@drawable/vector_search"
             app:iconGravity="textStart"
-            app:iconPadding="@dimen/button_padding_icon_top"
-            app:iconTint="@color/yp_black"
-
-            style= "@style/main_menu_buttons" />
+            app:iconPadding="@dimen/dp_8"
+            app:iconTint="@color/yp_black"/>
 
         <Button
+            style= "@style/main_menu_buttons"
             android:id="@+id/id_button_library"
             android:text="@string/title_library"
-            app:cornerRadius="@dimen/button_radius"
+            app:cornerRadius="@dimen/dp_16"
             app:icon="@drawable/vector_library"
             app:iconGravity="textStart"
-            app:iconPadding="@dimen/button_padding_icon_top"
-            app:iconTint="@color/yp_black"
-
-            style= "@style/main_menu_buttons" />
+            app:iconPadding="@dimen/dp_8"
+            app:iconTint="@color/yp_black"/>
 
         <Button
+            style= "@style/main_menu_buttons"
             android:id="@+id/id_button_settings"
             android:text="@string/title_settings"
-            app:cornerRadius="@dimen/button_radius"
+            app:cornerRadius="@dimen/dp_16"
             app:icon="@drawable/vector_settings"
             app:iconGravity="textStart"
-            app:iconPadding="@dimen/button_padding_icon_top"
-            app:iconTint="@color/yp_black"
-
-            style= "@style/main_menu_buttons" />
+            app:iconPadding="@dimen/dp_8"
+            app:iconTint="@color/yp_black"/>
     </LinearLayout>
 
 </LinearLayout>

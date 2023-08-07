@@ -17,10 +17,10 @@
             android:id="@+id/id_settings_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            app:cornerRadius="@dimen/corner_radius_zero"
+            app:cornerRadius="@dimen/dp_0"
             app:icon="@drawable/vector_arrow_back"
             app:iconGravity="start"
-            app:iconPadding="@dimen/button_padding_icon_top"
+            app:iconPadding="@dimen/dp_8"
             app:iconTint="@color/yp_black" />
 
         <TextView
@@ -42,10 +42,10 @@
 
         <Button
             style="@style/settings_buttons"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:text="@string/settings_dark_theme"
-            app:cornerRadius="@dimen/corner_radius_zero" />
+            app:cornerRadius="@dimen/dp_0" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -57,37 +57,37 @@
 
     <Button
         style="@style/settings_buttons"
+        android:id="@+id/id_settings_share"
         android:text="@string/settings_share_app"
-        app:cornerRadius="@dimen/corner_radius_zero"
+        app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_share"
         app:iconGravity="end"
-        app:iconPadding="@dimen/button_padding_icon_top"
-
-        app:iconTint="@color/yp_text_gray" />
+        app:iconPadding="@dimen/dp_8"
+        app:iconTint="@color/yp_text_gray_settings_icons" />
 
     <Button
         style="@style/settings_buttons"
+        android:id="@+id/id_settings_write_tech"
         android:text="@string/settings_write_tech"
-        app:cornerRadius="@dimen/corner_radius_zero"
+        app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_support"
         app:iconGravity="end"
-        app:iconPadding="@dimen/button_padding_icon_top"
-
-        app:iconTint="@color/yp_text_gray" />
+        app:iconPadding="@dimen/dp_8"
+        app:iconTint="@color/yp_text_gray_settings_icons" />
 
     <Button
         style="@style/settings_buttons"
+        android:id="@+id/id_settings_user_lic"
         android:text="@string/settings_user_lic"
-        app:cornerRadius="@dimen/corner_radius_zero"
+        app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_arrow_forward"
         app:iconGravity="end"
-        app:iconPadding="@dimen/button_padding_icon_top"
-
-        app:iconTint="@color/yp_text_gray" />
+        app:iconPadding="@dimen/dp_8"
+        app:iconTint="@color/yp_text_gray_settings_icons" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <LinearLayout
@@ -130,6 +130,4 @@
 
 
     </LinearLayout>
-
-
 </LinearLayout>

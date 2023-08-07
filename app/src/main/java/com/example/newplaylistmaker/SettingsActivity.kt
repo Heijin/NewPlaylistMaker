@@ -2,6 +2,7 @@ package com.example.newplaylistmaker
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,8 +16,42 @@ class SettingsActivity : AppCompatActivity() {
         val buttonBack = findViewById<Button>(R.id.id_settings_back)
         buttonBack.setOnClickListener {
             //Toast.makeText(this@MainActivity, "Нажали на id_button_search!", Toast.LENGTH_SHORT).show()
-            val displayIntent = Intent(this, MainActivity::class.java)
-            startActivity(displayIntent)
+            //val displayIntent = Intent(this, MainActivity::class.java)
+            //startActivity(displayIntent)
+            finish()
+            //onBackPressed() \
         }
+
+        val buttonShare = findViewById<Button>(R.id.id_settings_share)
+        buttonShare.setOnClickListener {
+            val linkToPracticum = getString(R.string.link_to_practicum)
+            val sharePracticum = Intent(Intent.ACTION_SEND)
+            sharePracticum.type = "text/plain"
+            sharePracticum.putExtra(Intent.EXTRA_TEXT, linkToPracticum)
+            startActivity(sharePracticum)
+        }
+
+        val buttonWriteTech = findViewById<Button>(R.id.id_settings_write_tech)
+        buttonWriteTech.setOnClickListener {
+            val writeToTech = Intent(Intent.ACTION_SENDTO)
+            writeToTech.data = Uri.parse("mailto:")
+            writeToTech.putExtra(Intent.EXTRA_EMAIL, getString(R.string.my_mail))
+            writeToTech.putExtra(
+                Intent.EXTRA_SUBJECT, getString(R.string.subject_for_developers)
+            )
+            writeToTech.putExtra(
+                Intent.EXTRA_TEXT, getString(R.string.message_for_developers)
+            )
+
+            startActivity(writeToTech)
+        }
+
+        val buttonUserLic = findViewById<Button>(R.id.id_settings_user_lic)
+        buttonUserLic.setOnClickListener {
+            val userLicView = Intent(Intent.ACTION_VIEW)
+            userLicView.data = Uri.parse(getString(R.string.practicum_offer))
+            startActivity(userLicView)
+        }
+
     }
 }
