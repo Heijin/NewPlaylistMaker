@@ -33,17 +33,14 @@ class SettingsActivity : AppCompatActivity() {
 
         val buttonWriteTech = findViewById<Button>(R.id.id_settings_write_tech)
         buttonWriteTech.setOnClickListener {
-            val writeToTech = Intent(Intent.ACTION_SENDTO)
-            writeToTech.data = Uri.parse("mailto:")
-            writeToTech.putExtra(Intent.EXTRA_EMAIL, getString(R.string.my_mail))
-            writeToTech.putExtra(
-                Intent.EXTRA_SUBJECT, getString(R.string.subject_for_developers)
-            )
-            writeToTech.putExtra(
-                Intent.EXTRA_TEXT, getString(R.string.message_for_developers)
-            )
 
-            startActivity(writeToTech)
+            Intent(Intent.ACTION_SENDTO).apply {
+                setDataAndType(Uri.parse("mailto:"), "text/plain")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.my_mail)))
+                putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject_for_developers))
+                putExtra(Intent.EXTRA_TEXT, getString(R.string.message_for_developers))
+                startActivity(this)
+            }
         }
 
         val buttonUserLic = findViewById<Button>(R.id.id_settings_user_lic)

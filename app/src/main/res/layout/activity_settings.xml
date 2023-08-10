@@ -42,7 +42,9 @@
 
         <Button
             style="@style/settings_buttons"
+            android:gravity="left|center_vertical"
             android:layout_width="0dp"
+            android:layout_height="61dp"
             android:layout_weight="1"
             android:text="@string/settings_dark_theme"
             app:cornerRadius="@dimen/dp_0" />
@@ -58,7 +60,10 @@
     <Button
         style="@style/settings_buttons"
         android:id="@+id/id_settings_share"
+        android:gravity="left|center_vertical"
         android:text="@string/settings_share_app"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_share"
         app:iconGravity="end"
@@ -68,7 +73,10 @@
     <Button
         style="@style/settings_buttons"
         android:id="@+id/id_settings_write_tech"
+        android:gravity="left|center_vertical"
         android:text="@string/settings_write_tech"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_support"
         app:iconGravity="end"
@@ -78,7 +86,10 @@
     <Button
         style="@style/settings_buttons"
         android:id="@+id/id_settings_user_lic"
+        android:gravity="left|center_vertical"
         android:text="@string/settings_user_lic"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_arrow_forward"
         app:iconGravity="end"
@@ -100,7 +111,9 @@
 
             android:text="@string/title_search"
             android:textColor="@color/yp_black"
-
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:icon="@drawable/vector_search"
             app:iconGravity="textTop"
             app:iconPadding="0dp"
@@ -111,7 +124,9 @@
 
             android:text="@string/title_library"
             android:textColor="@color/yp_black"
-
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:icon="@drawable/vector_library"
             app:iconGravity="textTop"
             app:iconPadding="0dp"
@@ -122,12 +137,13 @@
 
             android:text="@string/title_settings"
             android:textColor="@color/yp_blue"
-
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:icon="@drawable/vector_settings"
             app:iconGravity="textTop"
             app:iconPadding="0dp"
             app:iconTint="@color/yp_blue" />
-
 
     </LinearLayout>
 </LinearLayout>

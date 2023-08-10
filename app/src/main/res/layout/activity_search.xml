@@ -13,6 +13,7 @@
 
         <Button
             style="@style/settings_buttons"
+            android:gravity="left|center_vertical"
             android:id="@+id/id_search_back"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -54,15 +55,15 @@
             android:maxLength="50"
             android:maxLines="1"
             android:padding="@dimen/dp_8"
-            android:textColor="@color/yp_text_gray"/>
+            android:textColor="@color/yp_black_search_color"/>
 
         <ImageView
             android:id="@+id/search_clearIcon"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="-60dp"
+            android:layout_marginLeft="-44dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:src="@drawable/vector_clear"
             android:visibility="gone" />
 
     </LinearLayout>

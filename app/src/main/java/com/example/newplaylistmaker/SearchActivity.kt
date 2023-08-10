@@ -5,15 +5,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.core.view.isVisible
 
 class SearchActivity : AppCompatActivity() {
 
-    var editText = ""
+    private var editText = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
@@ -37,7 +37,7 @@ class SearchActivity : AppCompatActivity() {
             finish()
         }
 
-        val TextWatcher = object : TextWatcher {
+        val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 // empty
             }
@@ -45,11 +45,13 @@ class SearchActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
                 editText = buttonSearchInputText.text.toString()
-
-                if (editText.isEmpty()) {
+                buttonClearSearch.isVisible = editText.isNotEmpty()
+                /*if (editText.isEmpty()) {
                     buttonClearSearch.visibility = View.GONE
                 } else {
                     buttonClearSearch.visibility = View.VISIBLE }
+                 */
+
 
             }
 
@@ -61,13 +63,8 @@ class SearchActivity : AppCompatActivity() {
         buttonSearchInputText.setOnClickListener {
             buttonSearchInputText.setText("")
         }
-        buttonSearchInputText.addTextChangedListener(TextWatcher)
+        buttonSearchInputText.addTextChangedListener(textWatcher)
 
-
-    }
-
-    companion object {
-        const val EDIT_TEXT = ""
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -81,5 +78,8 @@ class SearchActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.search_input_text).setText(editText)
     }
 
+    private companion object {
+        const val EDIT_TEXT = ""
+    }
 }
 
