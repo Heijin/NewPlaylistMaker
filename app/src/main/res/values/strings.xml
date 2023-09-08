@@ -13,5 +13,9 @@
     <string name="subject_for_developers">"Сообщение разработчикам и разработчицам приложения Playlist Maker"</string>
     <string name="message_for_developers">"Спасибо разработчикам и разработчицам за крутое приложение!"</string>
     <string name="practicum_offer">"https://yandex.ru/legal/practicum_offer/"</string>
+    <string name="search_base_url">"https://itunes.apple.com"</string>
+    <string name="empty_search_text">Ничего не нашлось</string>
+    <string name="on_error_search_text">Проблемы со связью \n\n Загрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="refresh">Обновить</string>
 
 </resources>

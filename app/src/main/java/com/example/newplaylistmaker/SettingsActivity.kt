@@ -35,7 +35,7 @@ class SettingsActivity : AppCompatActivity() {
         buttonWriteTech.setOnClickListener {
 
             Intent(Intent.ACTION_SENDTO).apply {
-                setDataAndType(Uri.parse("mailto:"), "text/plain")
+                data = Uri.parse("mailto:")
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(getString(R.string.my_mail)))
                 putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject_for_developers))
                 putExtra(Intent.EXTRA_TEXT, getString(R.string.message_for_developers))

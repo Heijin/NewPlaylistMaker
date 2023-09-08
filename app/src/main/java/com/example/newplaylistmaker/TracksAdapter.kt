@@ -18,9 +18,6 @@ class TracksAdapter(
         holder.bind(items[position])
         holder.itemView.setOnClickListener { onItemClickListener.onItemClick(items[holder.adapterPosition]) }
     }
-
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount() = items.size
 
 }
