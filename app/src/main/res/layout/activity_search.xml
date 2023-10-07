@@ -71,6 +71,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/result_Layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -129,7 +130,7 @@
                 android:textColor="@color/yp_black"  />
 
             <Button
-                style= "@style/search_menu_refresh"
+                style= "@style/search_menu_refresh_clear"
                 android:id="@+id/button_refresh"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -141,5 +142,37 @@
         </LinearLayout>
 
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/history_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="center"
+            android:text= "@string/title_history_search"
+            android:textAppearance="@style/ys_medium_19"
+            android:textColor="@color/yp_black" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <Button
+            style= "@style/search_menu_refresh_clear"
+            android:id="@+id/search_history_clear"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:text="@string/clear_history"
+            app:cornerRadius="54dp"/>
+    </LinearLayout>
 
 </LinearLayout>

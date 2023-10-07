@@ -2,6 +2,7 @@ package com.example.newplaylistmaker
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -15,7 +16,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.widget.ButtonBarLayout
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,8 +34,12 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
+        val sharedPrefs: SharedPreferences = getSharedPreferences(APP_CONFIG, MODE_PRIVATE)
         // Элементы разметки
+        val historyLayout = findViewById<LinearLayout>(R.id.history_Layout)
+        val resultLayout = findViewById<FrameLayout>(R.id.result_Layout)
         val buttonSearchInputText = findViewById<EditText>(R.id.search_input_text)
+        val buttonClearHistory = findViewById<Button>(R.id.search_history_clear)
         val buttonBack = findViewById<Button>(R.id.id_search_back)
         val buttonClearSearch = findViewById<ImageView>(R.id.search_clearIcon)
         val errorButtonRefresh = findViewById<Button>(R.id.button_refresh)
@@ -46,18 +50,29 @@ class SearchActivity : AppCompatActivity() {
             .baseUrl(getString(R.string.search_base_url))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        var trackList = ArrayList<Track>()
+
+        val trackList = ArrayList<Track>()
+        val searchHistoryTracks = ArrayList<Track>()
 
         val itunesService = retrofit.create(ItunesApi::class.java)
 
         lateinit var adapter: TracksAdapter
-
+        lateinit var adapterHistory: TracksAdapter
 
         buttonBack.setOnClickListener {
             finish()
         }
-        buttonBack.setOnClickListener {
-            finish()
+
+        buttonClearHistory.setOnClickListener {
+            SearchHistory(sharedPrefs).clearSearchHistory(searchHistoryTracks)
+            showSearchHistory(
+                false,
+                searchHistoryTracks,
+                adapterHistory,
+                resultLayout,
+                historyLayout,
+                sharedPrefs
+            )
         }
 
         errorButtonRefresh.setOnClickListener {
@@ -90,13 +105,14 @@ class SearchActivity : AppCompatActivity() {
 
                 editText = buttonSearchInputText.text.toString()
                 buttonClearSearch.isVisible = editText.isNotEmpty()
-                /*if (editText.isEmpty()) {
-                    buttonClearSearch.visibility = View.GONE
-                } else {
-                    buttonClearSearch.visibility = View.VISIBLE }
-                 */
-
-
+                showSearchHistory(
+                    editText.isEmpty() && buttonSearchInputText.hasFocus(),
+                    searchHistoryTracks,
+                    adapterHistory,
+                    resultLayout,
+                    historyLayout,
+                    sharedPrefs
+                )
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -123,53 +139,56 @@ class SearchActivity : AppCompatActivity() {
             false
         }
 
-        // Работаем с RecyclerView
-        //val trackList = ArrayList<Track>()
+        buttonSearchInputText.setOnFocusChangeListener { _, hasFocus ->
+            showSearchHistory(
+                hasFocus && buttonSearchInputText.text.isEmpty(),
+                searchHistoryTracks,
+                adapterHistory,
+                resultLayout,
+                historyLayout,
+                sharedPrefs
+            )
+        }
 
-        /*trackList.add(
-            Track("Long track name Long track name Long track name Long track name","Long artist name Long artist name Long artist name Long artist name","5:01",
-                "")
-        )
-
-        trackList.add(
-            Track("Smells Like Teen Spirit","Nirvana","5:01",
-            "https://is5-ssl.mzstatic.com/image/thumb/Music115/v4/7b/58/c2/7b58c21a-2b51-2bb2-e59a-9bb9b96ad8c3/00602567924166.rgb.jpg/100x100bb.jpg")
-        )
-
-        trackList.add(
-            Track("Billie Jean","Michael Jackson","4:35",
-            "https://is5-ssl.mzstatic.com/image/thumb/Music125/v4/3d/9d/38/3d9d3811-71f0-3a0e-1ada-3004e56ff852/827969428726.jpg/100x100bb.jpg")
-        )
-
-        trackList.add(
-            Track("Stayin' Alive","Bee Gees","4:10",
-            "https://is4-ssl.mzstatic.com/image/thumb/Music115/v4/1f/80/1f/1f801fc1-8c0f-ea3e-d3e5-387c6619619e/16UMGIM86640.rgb.jpg/100x100bb.jpg")
-        )
-
-        trackList.add(
-            Track("Whole Lotta Love","Led Zeppelin","5:33",
-            "https://is2-ssl.mzstatic.com/image/thumb/Music62/v4/7e/17/e3/7e17e33f-2efa-2a36-e916-7f808576cf6b/mzm.fyigqcbs.jpg/100x100bb.jpg")
-        )
-
-        trackList.add(
-            Track("Sweet Child O'Mine","Guns N' Roses","5:03",
-            "https://is5-ssl.mzstatic.com/image/thumb/Music125/v4/a0/4d/c4/a04dc484-03cc-02aa-fa82-5334fcb4bc16/18UMGIM24878.rgb.jpg/100x100bb.jpg")
-        )*/
-
+        // RecyclerView результата поиска
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(item: Track) {
-                /*val position = trackList.indexOf(track)
-                trackList.remove(item)
-                adapter.notifyItemRemoved(position)
-                adapter.notifyItemRangeChanged(position, trackList.size)*/
+                SearchHistory(sharedPrefs).saveTrackToHistory(item)
             }
         }
         adapter = TracksAdapter(trackList, onItemClickListener)
         recyclerView.adapter = adapter
 
+        // RecyclerView истории поиска
+        val recyclerViewHistory = findViewById<RecyclerView>(R.id.recyclerViewHistory)
+        recyclerViewHistory.layoutManager = LinearLayoutManager(this)
+        adapterHistory = TracksAdapter(searchHistoryTracks)
+        recyclerViewHistory.adapter = adapterHistory
+    }
+
+    private fun showSearchHistory(showHistory: Boolean,
+                                  searchHistoryTracks: ArrayList<Track> ,
+                                  adapter: TracksAdapter,
+                                  resultLayout: FrameLayout,
+                                  historyLayout: LinearLayout,
+                                  sharedPrefs: SharedPreferences ) {
+
+        // Если не нужно показывать историю, просто переключим слои.
+        if (!showHistory) {
+            resultLayout.visibility = View.VISIBLE
+            historyLayout.visibility = View.GONE
+            return
+        }
+        searchHistoryTracks.clear()
+        searchHistoryTracks.addAll(SearchHistory(sharedPrefs).getSearchHistory().reversed())
+        if (searchHistoryTracks.size == 0) return
+
+        resultLayout.visibility = View.GONE
+        historyLayout.visibility = View.VISIBLE
+        adapter.notifyDataSetChanged()
     }
 
     private fun startSearchByText(
@@ -246,5 +265,6 @@ class SearchActivity : AppCompatActivity() {
     private companion object {
         const val EDIT_TEXT = ""
     }
+
 }
 
