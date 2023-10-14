@@ -8,6 +8,10 @@ data class Track(
     val artistName: String, // Имя исполнителя
     @SerializedName("trackTimeMillis") val trackTime: String, // Продолжительность трека
     val artworkUrl100: String, // Ссылка на изображение обложки
-    var trackId: String // уникальный ID трека
+    val trackId: String, // уникальный ID трека
+    val collectionName: String, //Альбом
+    val releaseDate: String, // Год выпуска
+    val primaryGenreName: String, // Жанр
+    val country: String // Страна
 
 )

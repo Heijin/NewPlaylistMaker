@@ -19,7 +19,10 @@
     <string name="refresh">Обновить</string>
     <string name="title_history_search">Вы искали</string>
     <string name="clear_history">Очистить историю</string>
-
-
+    <string name="primaryGenreName">Жанр</string>
+    <string name="country">Страна</string>
+    <string name="releaseDate">Год</string>
+    <string name="collectionName">Альбом</string>
+    <string name="trackTimeMills">Длительность</string>
 
 </resources>

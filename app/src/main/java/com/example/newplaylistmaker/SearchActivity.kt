@@ -2,6 +2,7 @@ package com.example.newplaylistmaker
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,9 +17,11 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -157,6 +160,8 @@ class SearchActivity : AppCompatActivity() {
         val onItemClickListener = object : OnItemClickListener {
             override fun onItemClick(item: Track) {
                 SearchHistory(sharedPrefs).saveTrackToHistory(item)
+                startActivity(Intent(this@SearchActivity, AudioPlayerActivity::class.java)
+                    .putExtra("track", Gson().toJson(item)))
             }
         }
         adapter = TracksAdapter(trackList, onItemClickListener)
@@ -165,7 +170,15 @@ class SearchActivity : AppCompatActivity() {
         // RecyclerView истории поиска
         val recyclerViewHistory = findViewById<RecyclerView>(R.id.recyclerViewHistory)
         recyclerViewHistory.layoutManager = LinearLayoutManager(this)
-        adapterHistory = TracksAdapter(searchHistoryTracks)
+
+        val onItemClickListenerHistory = object : OnItemClickListener {
+            override fun onItemClick(item: Track) {
+                startActivity(Intent(this@SearchActivity, AudioPlayerActivity::class.java)
+                    .putExtra("track", Gson().toJson(item)))
+            }
+        }
+
+        adapterHistory = TracksAdapter(searchHistoryTracks, onItemClickListenerHistory)
         recyclerViewHistory.adapter = adapterHistory
     }
 

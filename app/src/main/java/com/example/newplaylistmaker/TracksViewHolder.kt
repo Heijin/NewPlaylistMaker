@@ -22,12 +22,10 @@ class TracksViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             .load(item.artworkUrl100)
             .placeholder(R.drawable.vector_placeholder)
             .fitCenter()
-            .transform(RoundedCorners(dpToPx(2)))
+            .transform(RoundedCorners(CommonModule().dpToPx(2)))
             .into(itemImage)
         itemTrackName.text = item.trackName.trim()
         itemArtistName.text = item.artistName.trim()
-        itemTrackTime.text = SimpleDateFormat("mm:ss", Locale.getDefault()).format(item.trackTime.toLong())
+        itemTrackTime.text = CommonModule().getMMSSFormat(item.trackTime)
     }
-
-    private fun dpToPx(dp: Int) = (dp * Resources.getSystem().displayMetrics.density).toInt()
 }

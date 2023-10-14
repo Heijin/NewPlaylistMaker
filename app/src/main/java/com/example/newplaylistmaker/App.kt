@@ -13,8 +13,16 @@ class App : Application() {
 
     override fun onCreate() {
         val sharedPrefs = getSharedPreferences(APP_CONFIG, MODE_PRIVATE)
-        darkTheme = sharedPrefs.getBoolean(DARK_THEME, darkTheme)
-        switchTheme(darkTheme)
+        val firstStart =sharedPrefs.getBoolean("first_start", true)
+        if (firstStart) {
+            sharedPrefs.edit()
+                .putBoolean("first_start", false)
+                .apply()
+            switchTheme(AppCompatDelegate.MODE_NIGHT_YES == 2)
+        } else {
+            darkTheme = sharedPrefs.getBoolean(DARK_THEME, darkTheme)
+            switchTheme(darkTheme)
+        }
         super.onCreate()
     }
 
