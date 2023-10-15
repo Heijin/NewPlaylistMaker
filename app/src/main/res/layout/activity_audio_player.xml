@@ -8,6 +8,13 @@
     tools:context=".LibraryActivity">
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_for_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,12 +143,24 @@
         app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"
         app:layout_constraintEnd_toStartOf="@+id/right_outer_guideline" />
 
+    <View
+        android:layout_height="@dimen/dp_0"
+        android:layout_width="wrap_content"
+        android:id="@+id/empty_view_left_top"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/item_trackTime"
+        app:layout_constraintBottom_toTopOf="@+id/text_only_trackTimeMills"
+        tools:ignore="MissingConstraints" />
+
     <TextView
         style="@style/text_view_in_audio_player"
         android:id="@+id/text_only_trackTimeMills"
         android:text="@string/trackTimeMills"
         android:textColor = "@color/yp_text_gray_always"
-        app:layout_constraintBottom_toBottomOf="@+id/text_only_collectionName"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/empty_view_left_top"
+        app:layout_constraintBottom_toTopOf="@+id/text_only_collectionName"
         app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"/>
 
     <TextView
@@ -149,7 +168,9 @@
         android:id="@+id/text_only_collectionName"
         android:text="@string/collectionName"
         android:textColor = "@color/yp_text_gray_always"
-        app:layout_constraintBottom_toBottomOf="@+id/text_only_releaseDate"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/text_only_trackTimeMills"
+        app:layout_constraintBottom_toTopOf="@+id/text_only_releaseDate"
         app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"/>
 
     <TextView
@@ -157,7 +178,9 @@
         android:id="@+id/text_only_releaseDate"
         android:text="@string/releaseDate"
         android:textColor = "@color/yp_text_gray_always"
-        app:layout_constraintBottom_toBottomOf="@+id/text_only_primaryGenreName"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/text_only_collectionName"
+        app:layout_constraintBottom_toTopOf="@+id/text_only_primaryGenreName"
         app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"/>
 
     <TextView
@@ -165,7 +188,9 @@
         android:id="@+id/text_only_primaryGenreName"
         android:text="@string/primaryGenreName"
         android:textColor = "@color/yp_text_gray_always"
-        app:layout_constraintBottom_toBottomOf="@+id/text_only_country"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/text_only_releaseDate"
+        app:layout_constraintBottom_toTopOf="@+id/text_only_country"
         app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"/>
 
     <TextView
@@ -173,24 +198,37 @@
         android:id="@+id/text_only_country"
         android:text="@string/country"
         android:textColor = "@color/yp_text_gray_always"
-        android:layout_marginBottom="28dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/text_only_primaryGenreName"
+        app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"
+        app:layout_constraintBottom_toTopOf="@+id/empty_view_left_bottom" />
+    <View
+        android:layout_height="@dimen/dp_0"
+        android:layout_width="wrap_content"
+        android:id="@+id/empty_view_left_bottom"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/text_only_country"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"/>
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:layout_height="@dimen/dp_0"
+        android:layout_width="wrap_content"
+        android:id="@+id/empty_view_right_top"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/item_trackTime"
+        app:layout_constraintBottom_toTopOf="@+id/trackTimeMills"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         style="@style/text_view_in_audio_player"
         android:id="@+id/trackTimeMills"
         android:text="@string/trackTimeMills"
         android:textColor="@color/yp_black"
-        app:layout_constraintBottom_toBottomOf="@+id/collectionName"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/empty_view_right_top"
+        app:layout_constraintBottom_toTopOf="@+id/collectionName"
         app:layout_constraintEnd_toStartOf="@+id/right_outer_guideline" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_for_album"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
 
     <TextView
         style="@style/text_view_in_audio_player"
@@ -202,8 +240,10 @@
         android:singleLine="true"
         android:text="@string/collectionName"
         android:textColor="@color/yp_black"
-        app:layout_constraintBottom_toBottomOf="@+id/releaseDate"
+        app:layout_constraintVertical_weight="1"
         app:layout_constraintStart_toEndOf= "@+id/guideline_for_album"
+        app:layout_constraintTop_toBottomOf="@+id/trackTimeMills"
+        app:layout_constraintBottom_toTopOf="@+id/releaseDate"
         app:layout_constraintEnd_toStartOf="@+id/right_outer_guideline" />
 
     <TextView
@@ -211,7 +251,9 @@
         android:id="@+id/releaseDate"
         android:text="@string/releaseDate"
         android:textColor="@color/yp_black"
-        app:layout_constraintBottom_toBottomOf="@+id/primaryGenreName"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/collectionName"
+        app:layout_constraintBottom_toTopOf="@+id/primaryGenreName"
         app:layout_constraintEnd_toStartOf="@+id/right_outer_guideline" />
 
     <TextView
@@ -219,7 +261,9 @@
         android:id="@+id/primaryGenreName"
         android:text="@string/primaryGenreName"
         android:textColor="@color/yp_black"
-        app:layout_constraintBottom_toBottomOf="@+id/country"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/releaseDate"
+        app:layout_constraintBottom_toTopOf="@+id/country"
         app:layout_constraintEnd_toStartOf="@+id/right_outer_guideline" />
 
     <TextView
@@ -227,9 +271,19 @@
         android:id="@+id/country"
         android:text="@string/country"
         android:textColor="@color/yp_black"
-        android:layout_marginBottom="28dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/primaryGenreName"
+        app:layout_constraintEnd_toStartOf="@+id/right_outer_guideline"
+        app:layout_constraintBottom_toTopOf="@+id/empty_view_right_bottom" />
+
+    <View
+        android:layout_height="@dimen/dp_0"
+        android:layout_width="wrap_content"
+        android:id="@+id/empty_view_right_bottom"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintTop_toBottomOf="@+id/country"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/right_outer_guideline" />
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

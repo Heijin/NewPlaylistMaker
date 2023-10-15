@@ -57,7 +57,8 @@
             android:padding="@dimen/dp_8"
             android:singleLine="true"
             android:textColor="@color/yp_black_search_color"
-            android:textColorHint="@color/yp_text_gray" />
+            android:textColorHint="@color/yp_text_gray"
+            android:textCursorDrawable="@drawable/blue_cursor" />
 
         <ImageView
             android:id="@+id/search_clearIcon"
