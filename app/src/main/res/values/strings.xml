@@ -24,5 +24,6 @@
     <string name="releaseDate">Год</string>
     <string name="collectionName">Альбом</string>
     <string name="trackTimeMills">Длительность</string>
+    <string name="some_text">Текст-заглушка</string>
 
 </resources>

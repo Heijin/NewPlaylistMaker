@@ -6,7 +6,8 @@
     <color name="yp_white">#FFFFFF</color>
     <color name="yp_light_gray">#E6E8EB</color>
     <color name="yp_text_gray">#AEAFB4</color>
+    <color name="yp_text_gray_blue">#AEAFB4</color>
+    <color name="yp_text_light_gray_text_gray">#E6E8EB</color>
     <color name="yp_text_gray_always">#AEAFB4</color>
-    <color name="yp_text_gray_clear">#AEAFB4</color>
     <color name="yp_text_gray_settings_icons">#AEAFB4</color>
 </resources>

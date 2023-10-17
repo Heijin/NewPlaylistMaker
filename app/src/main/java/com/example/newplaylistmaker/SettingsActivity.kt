@@ -14,13 +14,9 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val buttonBack = findViewById<Button>(R.id.id_settings_back)
-        buttonBack.setOnClickListener {
-            //Toast.makeText(this@MainActivity, "Нажали на id_button_search!", Toast.LENGTH_SHORT).show()
-            //val displayIntent = Intent(this, MainActivity::class.java)
-            //startActivity(displayIntent)
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.id_settings_back)
+        toolbar.setNavigationOnClickListener {
             finish()
-            //onBackPressed() \
         }
 
         val buttonShare = findViewById<Button>(R.id.id_settings_share)

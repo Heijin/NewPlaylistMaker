@@ -6,6 +6,16 @@
     android:background="@color/yp_white"
     android:orientation="vertical">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/id_settings_back"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:textAppearance="@style/ys_medium_22"
+        android:textColor="@color/yp_black"
+        app:title="@string/title_settings"
+        app:navigationIcon="@drawable/vector_arrow_back" />
+
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +42,7 @@
             android:textColor="@color/yp_black" />
 
     </LinearLayout>
-
+    -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,12 +54,14 @@
             android:id="@+id/themeSwitcher"
             android:text="@string/settings_dark_theme"
             android:layout_gravity="start"
-            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="61dp"
             android:padding="@dimen/dp_8"
             android:textColor="@color/yp_black"
+            app:trackTint="@color/yp_text_light_gray_text_gray"
+            app:thumbTint="@color/yp_text_gray_blue"
             android:textAppearance="@style/ys_regular_16"/>
 
     </LinearLayout>
@@ -57,7 +69,7 @@
     <Button
         style="@style/settings_buttons"
         android:id="@+id/id_settings_share"
-        android:gravity="left|center_vertical"
+        android:gravity="start|center_vertical"
         android:text="@string/settings_share_app"
         android:layout_width="match_parent"
         android:layout_height="61dp"
@@ -70,7 +82,7 @@
     <Button
         style="@style/settings_buttons"
         android:id="@+id/id_settings_write_tech"
-        android:gravity="left|center_vertical"
+        android:gravity="start|center_vertical"
         android:text="@string/settings_write_tech"
         android:layout_width="match_parent"
         android:layout_height="61dp"
@@ -83,7 +95,7 @@
     <Button
         style="@style/settings_buttons"
         android:id="@+id/id_settings_user_lic"
-        android:gravity="left|center_vertical"
+        android:gravity="start|center_vertical"
         android:text="@string/settings_user_lic"
         android:layout_width="match_parent"
         android:layout_height="61dp"
@@ -101,6 +113,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:visibility="gone"
         android:orientation="horizontal">
 
         <Button
