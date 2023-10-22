@@ -3,11 +3,10 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 
 class SearchHistory (private val sharedPref: SharedPreferences)
-
 {
     fun saveTrackToHistory(track: Track) {
         var trackAdded = false
-        var searchHistory = getSearchHistory()
+        val searchHistory = getSearchHistory()
 
         // Проверка на наличие ранее добавленного трека в список по trackId
         for (savedTrack in searchHistory) {
@@ -44,7 +43,5 @@ class SearchHistory (private val sharedPref: SharedPreferences)
         sharedPref.edit()
             .putString(SEARCH_HISTORY, Gson().toJson(ArrayList<Track>()))
             .apply()
-
     }
-
 }

@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/id_settings_back"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="48dp"
         android:textAppearance="@style/ys_medium_22"
         android:textColor="@color/yp_black"
         app:title="@string/title_settings"

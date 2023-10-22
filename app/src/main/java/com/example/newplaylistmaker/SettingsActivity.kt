@@ -5,22 +5,21 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.example.newplaylistmaker.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        val binding = ActivitySettingsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.id_settings_back)
-        toolbar.setNavigationOnClickListener {
-            finish()
-        }
+        binding.idSettingsBack
+            .setNavigationOnClickListener {
+                finish()
+            }
 
-        val buttonShare = findViewById<Button>(R.id.id_settings_share)
-        buttonShare.setOnClickListener {
+        binding.idSettingsShare.setOnClickListener {
             val linkToPracticum = getString(R.string.link_to_practicum)
             val sharePracticum = Intent(Intent.ACTION_SEND)
             sharePracticum.type = "text/plain"
@@ -28,8 +27,7 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(sharePracticum)
         }
 
-        val buttonWriteTech = findViewById<Button>(R.id.id_settings_write_tech)
-        buttonWriteTech.setOnClickListener {
+        binding.idSettingsWriteTech.setOnClickListener {
 
             Intent(Intent.ACTION_SENDTO).apply {
                 data = Uri.parse("mailto:")
@@ -40,19 +38,15 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        val buttonUserLic = findViewById<Button>(R.id.id_settings_user_lic)
-        buttonUserLic.setOnClickListener {
+        binding.idSettingsUserLic.setOnClickListener {
             val userLicView = Intent(Intent.ACTION_VIEW)
             userLicView.data = Uri.parse(getString(R.string.practicum_offer))
             startActivity(userLicView)
         }
 
-        val themeSwitcher = findViewById<SwitchMaterial>(R.id.themeSwitcher)
-        themeSwitcher.isChecked = (applicationContext as App).darkTheme
-        themeSwitcher.setOnCheckedChangeListener { switcher, checked ->
+        binding.themeSwitcher.isChecked = (applicationContext as App).darkTheme
+        binding.themeSwitcher.setOnCheckedChangeListener { _, checked ->
             (applicationContext as App).switchTheme(checked)
         }
-
-
     }
 }

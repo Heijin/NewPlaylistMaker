@@ -3,36 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/yp_white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/id_search_back"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/id_search_back"
-            style="@style/settings_buttons"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:gravity="start|center_vertical"
-            app:cornerRadius="@dimen/dp_0"
-            app:icon="@drawable/vector_arrow_back"
-            app:iconGravity="start"
-            app:iconPadding="@dimen/dp_8"
-            app:iconTint="@color/yp_black" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="12dp"
-            android:gravity="start|center"
-            android:text="@string/title_search"
-            android:textAppearance="@style/ys_medium_22"
-            android:textColor="@color/yp_black" />
-
-    </LinearLayout>
+        android:layout_height="48dp"
+        android:textAppearance="@style/ys_medium_22"
+        android:textColor="@color/yp_black"
+        app:title="@string/title_search"
+        app:navigationIcon="@drawable/vector_arrow_back" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,9 +49,18 @@
             android:layout_gravity="center"
             android:layout_marginStart="-44dp"
             android:src="@drawable/vector_clear"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="140dp"
+        android:indeterminateTint="@color/yp_blue"
+        android:visibility="gone"/>
 
     <FrameLayout
         android:id="@+id/result_Layout"
@@ -125,7 +116,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dp_16"
                 android:paddingHorizontal="24dp"
-                android:text="error desc"
+                tools:text="error desc"
                 android:textAppearance="@style/ys_medium_19"
                 android:textAlignment="center"
                 android:textColor="@color/yp_black"  />
