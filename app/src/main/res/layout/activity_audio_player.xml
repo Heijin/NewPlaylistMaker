@@ -77,12 +77,12 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            tools:text="@string/some_text"
             android:textAppearance="@style/ys_medium_22"
             android:textColor="@color/yp_black"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/item_image" />
+            app:layout_constraintTop_toBottomOf="@+id/item_image"
+            tools:text="@string/some_text" />
 
         <TextView
             android:id="@+id/artistName"
@@ -92,12 +92,12 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:singleLine="true"
-            tools:text="@string/some_text"
             android:textAppearance="@style/ys_medium_14"
             android:textColor="@color/yp_black"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/trackName" />
+            app:layout_constraintTop_toBottomOf="@+id/trackName"
+            tools:text="@string/some_text" />
 
         <ImageButton
             android:id="@+id/add_to_history"
@@ -192,9 +192,9 @@
             android:layout_marginTop="16dp"
             android:text="@string/country"
             android:textColor="@color/yp_text_gray_always"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/left_outer_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/text_only_primaryGenreName"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/text_only_primaryGenreName" />
 
         <TextView
             android:id="@+id/trackTimeMills"

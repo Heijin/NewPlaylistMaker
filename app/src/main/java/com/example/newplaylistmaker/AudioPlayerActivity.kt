@@ -29,10 +29,10 @@ class AudioPlayerActivity : AppCompatActivity() {
             mediaPlayer.stop()
         }
 
-        val trackJson = intent.extras?.getString("track") ?: ""
+        val trackJson = intent.extras?.getString(TRACK_JSON) ?: ""
         loadTrackInfo(trackJson)
 
-        binding.playPause.setOnClickListener{
+        binding.playPause.setOnClickListener {
             when (playerState) {
                 STATE_PREPARED, STATE_PAUSED -> startPlayer()
                 STATE_PLAYING -> pausePlayer()
@@ -51,7 +51,7 @@ class AudioPlayerActivity : AppCompatActivity() {
                     val currentPosition = mediaPlayer.currentPosition
                     // Сделаем синхронизацию на старте, т.к. наш таймер срабатывает чуть раньше, чем фактическое время игры трека.
                     binding.itemTrackTime.text =
-                        CommonModule().getMMSSFormat(currentPosition.toString())
+                        Utils.getMMSSFormat(currentPosition.toString())
 
                     if (currentPosition < 1000L)
                         handler.postDelayed(this, DELAY - currentPosition + 50L)
@@ -66,11 +66,12 @@ class AudioPlayerActivity : AppCompatActivity() {
         pausePlayer()
         super.onStop()
     }
+
     private fun loadTrackInfo(trackJson: String) {
         val track = Gson().fromJson(trackJson, Track::class.java)
         binding.trackName.text = track.trackName
         binding.artistName.text = track.artistName
-        binding.trackTimeMills.text = CommonModule().getMMSSFormat(track.trackTime)
+        binding.trackTimeMills.text = Utils.getMMSSFormat(track.trackTime)
         binding.collectionName.text = track.collectionName
         binding.releaseDate.text = track.releaseDate.take(4)
         binding.primaryGenreName.text = track.primaryGenreName
@@ -79,10 +80,10 @@ class AudioPlayerActivity : AppCompatActivity() {
         val itemImage = findViewById<ImageView>(R.id.item_image)
 
         Glide.with(itemImage)
-            .load(track.artworkUrl100.replaceAfterLast('/',"512x512bb.jpg"))
+            .load(track.artworkUrl100.replaceAfterLast('/', "512x512bb.jpg"))
             .placeholder(R.drawable.vector_placeholder)
             .fitCenter()
-            .transform(RoundedCorners(CommonModule().dpToPx(8)))
+            .transform(RoundedCorners(Utils.dpToPx(8)))
             .into(itemImage)
 
         mediaPlayer.setDataSource(track.previewUrl)
@@ -105,24 +106,28 @@ class AudioPlayerActivity : AppCompatActivity() {
         binding.playPause.setImageResource(R.drawable.vector_button_pause)
         startTrackTimer()
     }
-    private fun pausePlayer () {
+
+    private fun pausePlayer() {
         mediaPlayer.pause()
         playerState = STATE_PAUSED
         binding.playPause.setImageResource(R.drawable.vector_button_play)
-        binding.itemTrackTime.text = CommonModule().getMMSSFormat(mediaPlayer.currentPosition.toString())
+        binding.itemTrackTime.text =
+            Utils.getMMSSFormat(mediaPlayer.currentPosition.toString())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(TRACK, trackJson)
+        outState.putString(TRACK_JSON, trackJson)
     }
+
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        trackJson = savedInstanceState.getString(TRACK, "")
+        trackJson = savedInstanceState.getString(TRACK_JSON, "")
         loadTrackInfo(trackJson)
     }
+
     private companion object {
-        const val TRACK = ""
+        const val TRACK_JSON = "track_json"
         private const val DELAY = 1000L
         private const val STATE_DEFAULT = 0
         private const val STATE_PREPARED = 1

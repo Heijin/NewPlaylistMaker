@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 
-class TracksViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class TracksViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val itemTrackName: TextView = itemView.findViewById(R.id.item_trackName)
     private val itemArtistName: TextView = itemView.findViewById(R.id.item_artistName)
@@ -19,10 +19,10 @@ class TracksViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             .load(item.artworkUrl100)
             .placeholder(R.drawable.vector_placeholder)
             .fitCenter()
-            .transform(RoundedCorners(CommonModule().dpToPx(2)))
+            .transform(RoundedCorners(Utils.dpToPx(2)))
             .into(itemImage)
         itemTrackName.text = item.trackName.trim()
         itemArtistName.text = item.artistName.trim()
-        itemTrackTime.text = CommonModule().getMMSSFormat(item.trackTime)
+        itemTrackTime.text = Utils.getMMSSFormat(item.trackTime)
     }
 }

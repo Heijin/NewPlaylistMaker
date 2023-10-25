@@ -1,9 +1,9 @@
 package com.example.newplaylistmaker
+
 import android.content.SharedPreferences
 import com.google.gson.Gson
 
-class SearchHistory (private val sharedPref: SharedPreferences)
-{
+class SearchHistory(private val sharedPref: SharedPreferences) {
     fun saveTrackToHistory(track: Track) {
         var trackAdded = false
         val searchHistory = getSearchHistory()

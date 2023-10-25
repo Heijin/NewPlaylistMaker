@@ -8,11 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newplaylistmaker.databinding.ActivitySearchBinding
 import com.google.gson.Gson
@@ -96,32 +95,18 @@ class SearchActivity : AppCompatActivity() {
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(binding.searchClearIcon.windowToken, 0)
         }
+        binding.searchInputText.doOnTextChanged { _, _, _, _ ->
 
-        val textWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // empty
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-                editText = binding.searchInputText.text.toString()
-                binding.searchClearIcon.isVisible = editText.isNotEmpty()
-                showSearchHistory(
-                    editText.isEmpty() && binding.searchInputText.hasFocus(),
-                    searchHistoryTracks,
-                    adapterHistory,
-                    sharedPrefs
-                )
-
-                startSearchDebounce()
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                // empty
-            }
+            editText = binding.searchInputText.text.toString()
+            binding.searchClearIcon.isVisible = editText.isNotEmpty()
+            showSearchHistory(
+                editText.isEmpty() && binding.searchInputText.hasFocus(),
+                searchHistoryTracks,
+                adapterHistory,
+                sharedPrefs
+            )
+            startSearchDebounce()
         }
-
-        binding.searchInputText.addTextChangedListener(textWatcher)
 
         binding.searchInputText.setOnFocusChangeListener { _, hasFocus ->
             showSearchHistory(
@@ -143,7 +128,7 @@ class SearchActivity : AppCompatActivity() {
                     SearchHistory(sharedPrefs).saveTrackToHistory(item)
                     startActivity(
                         Intent(this@SearchActivity, AudioPlayerActivity::class.java)
-                            .putExtra("track", Gson().toJson(item))
+                            .putExtra(TRACK_JSON, Gson().toJson(item))
                     )
                 }
             }
@@ -158,10 +143,10 @@ class SearchActivity : AppCompatActivity() {
         val onItemClickListenerHistory = object : OnItemClickListener {
             override fun onItemClick(item: Track) {
                 if (clickDebounce()) {
-                startActivity(
-                    Intent(this@SearchActivity, AudioPlayerActivity::class.java)
-                        .putExtra("track", Gson().toJson(item))
-                )
+                    startActivity(
+                        Intent(this@SearchActivity, AudioPlayerActivity::class.java)
+                            .putExtra(TRACK_JSON, Gson().toJson(item))
+                    )
 
                 }
             }
@@ -222,7 +207,11 @@ class SearchActivity : AppCompatActivity() {
 
                     if (response.body()?.results?.isNotEmpty() == true) {
                         binding.errorLayout.visibility = View.GONE
-                        trackList.addAll(response.body()?.results!!)
+                        val result = response.body()?.results
+
+                        if (result !== null)
+                            trackList.addAll(result)
+
                         adapter.notifyDataSetChanged()
                     } else {
                         onFailureSearch(true)
@@ -240,7 +229,7 @@ class SearchActivity : AppCompatActivity() {
         )
     }
 
-    private fun clickDebounce() : Boolean {
+    private fun clickDebounce(): Boolean {
         val current = isClickAllowed
         if (isClickAllowed) {
             isClickAllowed = false
@@ -248,6 +237,7 @@ class SearchActivity : AppCompatActivity() {
         }
         return current
     }
+
     private fun onFailureSearch(
         isEmpty: Boolean
     ) {
@@ -276,7 +266,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private companion object {
-        const val EDIT_TEXT = ""
+        const val EDIT_TEXT = "edit_text"
+        const val TRACK_JSON = "track_json"
         private const val SEARCH_DEBOUNCE_DELAY = 2000L
         private const val CLICK_DEBOUNCE_DELAY = 1000L
     }

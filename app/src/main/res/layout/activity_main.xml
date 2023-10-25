@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/yp_blue">
+    android:background="@color/yp_blue"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,8 +12,8 @@
         android:layout_gravity="start"
         android:padding="12dp"
         android:text="@string/title"
-        android:textColor="@color/yp_white"
-        android:textAppearance="@style/ys_medium_22" />
+        android:textAppearance="@style/ys_medium_22"
+        android:textColor="@color/yp_white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,46 +22,46 @@
         android:padding="16dp">
 
         <Button
-            style= "@style/main_menu_buttons"
             android:id="@+id/id_button_search"
-            android:text="@string/title_search"
-            android:layout_weight="1"
+            style="@style/main_menu_buttons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_16"
+            android:layout_weight="1"
+            android:text="@string/title_search"
             app:cornerRadius="@dimen/dp_16"
             app:icon="@drawable/vector_search"
             app:iconGravity="textStart"
             app:iconPadding="@dimen/dp_8"
-            app:iconTint="@color/yp_black"/>
+            app:iconTint="@color/yp_black" />
 
         <Button
-            style= "@style/main_menu_buttons"
             android:id="@+id/id_button_library"
-            android:text="@string/title_library"
-            android:layout_weight="1"
+            style="@style/main_menu_buttons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_16"
+            android:layout_weight="1"
+            android:text="@string/title_library"
             app:cornerRadius="@dimen/dp_16"
             app:icon="@drawable/vector_library"
             app:iconGravity="textStart"
             app:iconPadding="@dimen/dp_8"
-            app:iconTint="@color/yp_black"/>
+            app:iconTint="@color/yp_black" />
 
         <Button
-            style= "@style/main_menu_buttons"
             android:id="@+id/id_button_settings"
-            android:text="@string/title_settings"
-            android:layout_weight="1"
+            style="@style/main_menu_buttons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp_16"
+            android:layout_weight="1"
+            android:text="@string/title_settings"
             app:cornerRadius="@dimen/dp_16"
             app:icon="@drawable/vector_settings"
             app:iconGravity="textStart"
             app:iconPadding="@dimen/dp_8"
-            app:iconTint="@color/yp_black"/>
+            app:iconTint="@color/yp_black" />
     </LinearLayout>
 
 </LinearLayout>

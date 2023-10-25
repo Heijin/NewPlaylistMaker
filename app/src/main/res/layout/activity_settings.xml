@@ -12,37 +12,9 @@
         android:layout_height="48dp"
         android:textAppearance="@style/ys_medium_22"
         android:textColor="@color/yp_black"
-        app:title="@string/title_settings"
-        app:navigationIcon="@drawable/vector_arrow_back" />
+        app:navigationIcon="@drawable/vector_arrow_back"
+        app:title="@string/title_settings" />
 
-    <!--
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            style="@style/settings_buttons"
-            android:id="@+id/id_settings_back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:cornerRadius="@dimen/dp_0"
-            app:icon="@drawable/vector_arrow_back"
-            app:iconGravity="start"
-            app:iconPadding="@dimen/dp_8"
-            app:iconTint="@color/yp_black" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="12dp"
-            android:gravity="left|center"
-            android:text="@string/title_settings"
-            android:textAppearance="@style/ys_medium_22"
-            android:textColor="@color/yp_black" />
-
-    </LinearLayout>
-    -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,27 +24,27 @@
         <com.google.android.material.switchmaterial.SwitchMaterial
 
             android:id="@+id/themeSwitcher"
-            android:text="@string/settings_dark_theme"
+            android:layout_width="0dp"
+            android:layout_height="61dp"
             android:layout_gravity="start"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="61dp"
             android:padding="@dimen/dp_8"
+            android:text="@string/settings_dark_theme"
+            android:textAppearance="@style/ys_regular_16"
             android:textColor="@color/yp_black"
-            app:trackTint="@color/yp_text_light_gray_text_gray"
             app:thumbTint="@color/yp_text_gray_blue"
-            android:textAppearance="@style/ys_regular_16"/>
+            app:trackTint="@color/yp_text_light_gray_text_gray" />
 
     </LinearLayout>
 
     <Button
-        style="@style/settings_buttons"
         android:id="@+id/id_settings_share"
-        android:gravity="start|center_vertical"
-        android:text="@string/settings_share_app"
+        style="@style/settings_buttons"
         android:layout_width="match_parent"
         android:layout_height="61dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/settings_share_app"
         app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_share"
         app:iconGravity="end"
@@ -80,12 +52,12 @@
         app:iconTint="@color/yp_text_gray_settings_icons" />
 
     <Button
-        style="@style/settings_buttons"
         android:id="@+id/id_settings_write_tech"
-        android:gravity="start|center_vertical"
-        android:text="@string/settings_write_tech"
+        style="@style/settings_buttons"
         android:layout_width="match_parent"
         android:layout_height="61dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/settings_write_tech"
         app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_support"
         app:iconGravity="end"
@@ -93,12 +65,12 @@
         app:iconTint="@color/yp_text_gray_settings_icons" />
 
     <Button
-        style="@style/settings_buttons"
         android:id="@+id/id_settings_user_lic"
-        android:gravity="start|center_vertical"
-        android:text="@string/settings_user_lic"
+        style="@style/settings_buttons"
         android:layout_width="match_parent"
         android:layout_height="61dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/settings_user_lic"
         app:cornerRadius="@dimen/dp_0"
         app:icon="@drawable/vector_arrow_forward"
         app:iconGravity="end"
@@ -113,17 +85,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:visibility="gone"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <Button
             style="@style/settings_bottom_buttons"
 
-            android:text="@string/title_search"
-            android:textColor="@color/yp_black"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/title_search"
+            android:textColor="@color/yp_black"
             app:icon="@drawable/vector_search"
             app:iconGravity="textTop"
             app:iconPadding="0dp"
@@ -132,11 +104,11 @@
         <Button
             style="@style/settings_bottom_buttons"
 
-            android:text="@string/title_library"
-            android:textColor="@color/yp_black"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/title_library"
+            android:textColor="@color/yp_black"
             app:icon="@drawable/vector_library"
             app:iconGravity="textTop"
             app:iconPadding="0dp"
@@ -145,11 +117,11 @@
         <Button
             style="@style/settings_bottom_buttons"
 
-            android:text="@string/title_settings"
-            android:textColor="@color/yp_blue"
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/title_settings"
+            android:textColor="@color/yp_blue"
             app:icon="@drawable/vector_settings"
             app:iconGravity="textTop"
             app:iconPadding="0dp"
