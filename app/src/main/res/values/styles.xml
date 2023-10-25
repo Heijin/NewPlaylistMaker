@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="settings_buttons" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:backgroundTint">@color/yp_white</item>
+        <item name="android:textColor">@color/yp_black</item>
+        <item name="android:textAppearance">@style/ys_regular_16</item>
+    </style>
+
+    <style name="settings_bottom_buttons" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:backgroundTint">@color/yp_white</item>
+        <item name="android:textAppearance">@style/ys_regular_12</item>
+    </style>
+
+    <style name="main_menu_buttons" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:backgroundTint">@color/yp_white</item>
+        <item name="android:textAppearance">@style/ys_medium_22</item>
+        <item name="android:textColor">@color/yp_black</item>
+    </style>
+
+    <style name="search_menu_refresh_clear" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:backgroundTint">@color/yp_black</item>
+        <item name="android:textAppearance">@style/ys_medium_14</item>
+        <item name="android:textColor">@color/yp_white</item>
+    </style>
+
+    <style name="text_view_in_audio_player">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:textAppearance">@style/ys_regular_13</item>
+    </style>
+
+
+</resources>

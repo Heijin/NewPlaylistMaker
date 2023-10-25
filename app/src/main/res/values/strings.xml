@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">NewPlaylistMaker</string>
+    <string name="title">Playlist maker</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_library">Медиатека</string>
+    <string name="title_settings">Настройки</string>
+    <string name="settings_dark_theme">Темная тема</string>
+    <string name="settings_share_app">Поделиться приложением</string>
+    <string name="settings_write_tech">Написать в поддержку</string>
+    <string name="settings_user_lic">Пользовательское соглашение</string>
+    <string name="link_to_practicum">"https://practicum.yandex.ru/profile/android-developer/"</string>
+    <string name="my_mail">"dariankel@yandex.ru"</string>
+    <string name="subject_for_developers">"Сообщение разработчикам и разработчицам приложения Playlist Maker"</string>
+    <string name="message_for_developers">"Спасибо разработчикам и разработчицам за крутое приложение!"</string>
+    <string name="practicum_offer">"https://yandex.ru/legal/practicum_offer/"</string>
+    <string name="search_base_url">"https://itunes.apple.com"</string>
+    <string name="empty_search_text">Ничего не нашлось</string>
+    <string name="on_error_search_text">Проблемы со связью \n\n Загрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="refresh">Обновить</string>
+    <string name="title_history_search">Вы искали</string>
+    <string name="clear_history">Очистить историю</string>
+    <string name="primaryGenreName">Жанр</string>
+    <string name="country">Страна</string>
+    <string name="releaseDate">Год</string>
+    <string name="collectionName">Альбом</string>
+    <string name="trackTimeMills">Длительность</string>
+    <string name="zeroTime">00:00</string>
+    <string name="some_text">Текст-заглушка</string>
+
 </resources>
